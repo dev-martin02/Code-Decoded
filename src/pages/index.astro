@@ -1,4 +1,6 @@
 ---
+import Navigation from "../components/Navigation.astro";
+
 
 ---
 
@@ -10,7 +12,24 @@
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+	<body class="p-2" >
+		<Navigation/>
+	
+		<h1 class="font-bold text-lg">My Astro Learning Blog</h1>
+		<p>This is where I will post about my journey learning Astro.</p>
+		<main class="mt-10">
+			<section class="flex justify-between">
+				<h3 class="font-semibold text-xl">Recent Post</h3>
+				<div>
+					<input type="text" placeholder="Search Blog" class="border-2 border-gray-200 rounded-md p-1">
+					<button class=" border-2 border-gray-200 rounded-md p-1">Filter</button>
+				</div>
+			</section>
+			<ul class="mt-4 flex gap-2 flex-col md:flex-row">
+			<li class="border-2 p-10"><a href="/posts/post-1/">Post 1</a></li>
+			<li class="border-2 p-10"><a href="/posts/post-2/">Post 2</a></li>
+			<li class="border-2 p-10"><a href="/posts/post-3/">Post 3</a></li>
+			</ul>
+		</main>
+	  </body>
 </html>
