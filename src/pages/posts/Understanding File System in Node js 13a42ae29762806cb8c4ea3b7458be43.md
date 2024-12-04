@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/BlogPostLayout.astro"
 title: "Understanding File System in Node.js"
-pubDate: 2024-12-05
+date: 2024-12-05
 description: "This is a quick introduction to File System in Node.js"
 author: "Martin Morel"
 image:

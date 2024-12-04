@@ -1,15 +1,18 @@
 ---
-// 1. The frontmatter prop gives access to frontmatter and other data
+import Navigation from "../components/Navigation.astro";
+
 const { frontmatter } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="en" class="min-h-screen bg-gray-50">
+<html lang="en" class="min-h-screen bg-gray-50 flex flex-col justify-center items-center">
   <head>
-    <!-- Add other Head elements here, like styles and meta tags. -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <title>{frontmatter.title}</title>
   </head>
+  <header class="max-w-4xl mx-auto py-8">
+    <Navigation/>
+  </header>
   <body class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 space-y-4">
       <header class="border-b pb-4 mb-6">
@@ -21,9 +24,8 @@ const { frontmatter } = Astro.props;
         </h1>
       </header>
 
-      <!-- 2. Rendered HTML will be passed into the default slot. -->
       <article class="prose lg:prose-xl prose-headings:text-gray-900 prose-a:text-blue-600 prose-a:underline">
-        <slot />
+        <slot /> <!-- Child elements goes here -->
       </article>
 
       <footer class="text-sm text-gray-500 italic border-t pt-4">
