@@ -1,35 +1,73 @@
 ---
 import Navigation from "../components/Navigation.astro";
-
-
 ---
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Martin Note</title>
+    </head>
+    <body class="min-h-full bg-gray-50 text-gray-900 antialiased">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+         <Navigation/>
+           
+            <main>
+                <section class="bg-white shadow-md rounded-lg p-6 mb-8">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-4">My Astro Learning Blog</h1>
+                    <p class="text-gray-600 mb-6">This is where I will post about my journey learning Astro.</p>
+                </section>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body class="p-2" >
-		<Navigation/>
-	
-		<h1 class="font-bold text-lg">My Astro Learning Blog</h1>
-		<p>This is where I will post about my journey learning Astro.</p>
-		<main class="mt-10">
-			<section class="flex justify-between">
-				<h3 class="font-semibold text-xl">Recent Post</h3>
-				<div>
-					<input type="text" placeholder="Search Blog" class="border-2 border-gray-200 rounded-md p-1">
-					<button class=" border-2 border-gray-200 rounded-md p-1">Filter</button>
-				</div>
-			</section>
-			<ul class="mt-4 flex gap-2 flex-col md:flex-row">
-			<li class="border-2 p-10"><a href="/posts/post-1/">Post 1</a></li>
-			<li class="border-2 p-10"><a href="/posts/post-2/">Post 2</a></li>
-			<li class="border-2 p-10"><a href="/posts/post-3/">Post 3</a></li>
-			</ul>
-		</main>
-	  </body>
+                <section class="mb-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-4 md:mb-0">Recent Posts</h3>
+                        <div class="flex space-x-2">
+                            <input 
+                                type="text" 
+                                placeholder="Search Blog" 
+                                class="border-2 border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+                            >
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <li class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+                            <a 
+                                href="/posts/Understanding File System in Node js 13a42ae29762806cb8c4ea3b7458be43" 
+                                class="block p-6 hover:bg-gray-50"
+                            >
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Understanding File System in Node.js</h4>
+                                <p class="text-gray-600">Exploring file system operations in Node.js version 13</p>
+                            </a>
+                        </li>
+                        <li class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+                            <a 
+                                href="/posts/post-2/" 
+                                class="block p-6 hover:bg-gray-50"
+                            >
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Post 2</h4>
+                                <p class="text-gray-600">A brief description of the second post</p>
+                            </a>
+                        </li>
+                        <li class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
+                            <a 
+                                href="/posts/post-3/" 
+                                class="block p-6 hover:bg-gray-50"
+                            >
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Post 3</h4>
+                                <p class="text-gray-600">A brief description of the third post</p>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <footer class="border-t border-gray-200 py-8 mt-8 text-center text-gray-600">
+                © 2024 Martin Note. All rights reserved.
+            </footer>
+        </div>
+    </body>
 </html>
