@@ -13,25 +13,22 @@ const sortedPosts = allPosts.sort((a, b) =>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>Martin Note</title>
+        <title>Code Decoded</title>
     </head>
 
-    <body class="min-h-full bg-gray-50 text-gray-900 antialiased">
-
-        <header class="w-full flex justify-center" style="background-color: #181818;">
-            <div class="max-w-5xl">
-                <Navigation/>
-                <Image src={landingImg}  alt='A picture of 2 monitor one of them displaying a beautiful wallpaper while the other is just displaying spotify, also there is a laptop which is being use for programming'/>
-             </div>
-        </header>
-
+    <body class="min-h-full bg-gray-50 text-gray-900 antialiased">  
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Navigation/>   
         
             <main>
                 <section class="bg-white shadow-md rounded-lg p-6 mb-8">
-                    <h1 class="text-3xl font-bold text-gray-900 mb-4">My Astro Learning Blog</h1>
-                    <p class="text-gray-600 mb-6">This is where I will post about my journey learning Astro.</p>
+                    <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to Code Decoded!</h1>
+                    <p class="text-gray-600 mb-6">
+                        This website is all about <span class="text-gray-900 underline italic">making programming simple</span>. 
+                        Let's <span class="text-blue-500 font-bold">decode the code</span>, one step at a time. 🧩
+                    </p>
                 </section>
+                
 
                 <section class="mb-8">
                     <div class="flex flex-col md:flex-row justify-between items-center mb-6">
