@@ -1,7 +1,6 @@
 ---
-import Image from "astro/components/Image.astro";
 import Navigation from "../components/Navigation.astro";
-import landingImg from '../images/landing/david-schultz-SrewPUfo2c0-unsplash.jpg'
+
 const allPosts = await Astro.glob('../pages/posts/*.md');
 const sortedPosts = allPosts.sort((a, b) => 
   new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
@@ -24,7 +23,7 @@ const sortedPosts = allPosts.sort((a, b) =>
                 <section class="bg-white shadow-md rounded-lg p-6 mb-8">
                     <h1 class="text-3xl font-bold text-gray-900 mb-4">Welcome to Code Decoded!</h1>
                     <p class="text-gray-600 mb-6">
-                        This website is all about <span class="text-gray-900 underline italic">making programming simple</span>. 
+                        A website all about <span class="text-gray-900 underline italic">making programming simple</span>. 
                         Let's <span class="text-blue-500 font-bold">decode the code</span>, one step at a time. 🧩
                     </p>
                 </section>

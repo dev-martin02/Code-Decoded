@@ -1,7 +1,9 @@
 ---
+import Image from "astro/components/Image.astro";
 import Navigation from "../components/Navigation.astro";
 
 const { frontmatter } = Astro.props;
+
 ---
 <!DOCTYPE html>
 <html lang="en" class="min-h-screen bg-gray-50 flex flex-col justify-center items-center">
@@ -10,12 +12,14 @@ const { frontmatter } = Astro.props;
     <meta charset="utf-8">
     <title>{frontmatter.title}</title>
   </head>
-  <header class="max-w-4xl mx-auto py-8">
-    <Navigation/>
-  </header>
-  <body class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <body class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Navigation/>
+
     <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 space-y-4">
       <header class="border-b pb-4 mb-6">
+        <Image src={frontmatter.image.url} alt={frontmatter.image.alt}  width={1000} 
+        height={800} class="rounded mb-10 w-full" />
+
         <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">
           {frontmatter.title} 
           <span class="text-lg text-gray-600 font-normal block mt-2">
