@@ -1,7 +1,9 @@
 ---
+import Filter from "../components/Filter";
 import Navigation from "../components/Navigation.astro";
 
-const allPosts = await Astro.glob('../pages/posts/*.md');
+
+export const allPosts = await Astro.glob('../pages/posts/*.md');
 const sortedPosts = allPosts.sort((a, b) => 
   new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
 );
@@ -28,21 +30,30 @@ const sortedPosts = allPosts.sort((a, b) =>
                     </p>
                 </section>
                 
-
                 <section class="mb-8">
-                    <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <div class="flex flex-row justify-between items-center mb-6">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-4 md:mb-0">Recent Posts</h3>
                         <div class="flex space-x-2">
-                            <input 
+                            <!-- <input 
                                 type="text" 
                                 placeholder="Search Blog" 
                                 class="border-2 border-gray-200 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            >
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">
-                                Filter
+                            > -->
+                        
+                            <button class="border-2 rounded-lg p-2 text-gray-600 hover:bg-gray-100 transition-colors">
+                                <img src="../../public/icons/search.svg" />
+                            </button>
+                        
+                            <button id="filterToggle" class="border-2 rounded-lg p-2 text-gray-600 hover:bg-gray-100 transition-colors">
+                                <img src="../../public/icons/filter.svg" />
                             </button>
                         </div>
                     </div>
+                    
+                    <div id="filterContainer" class="hidden transition-all duration-300 ease-in-out mb-4">
+                     <Filter client:load/>
+                    </div>
+
                     <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {sortedPosts.map((post) => (
                             <li class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
@@ -82,5 +93,14 @@ const sortedPosts = allPosts.sort((a, b) =>
                 © 2024 Martin Note. All rights reserved.
             </footer>
         </div>
+
+        <script>
+            const filterToggle = document.getElementById('filterToggle');
+            const filterContainer = document.getElementById('filterContainer');
+
+            filterToggle!.addEventListener('click', () => {
+                filterContainer!.classList.toggle('hidden');
+            });
+        </script>
     </body>
 </html>

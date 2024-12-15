@@ -7,7 +7,7 @@ author: "Martin Morel"
 image:
   url: "https://docs.astro.build/assets/rose.webp"
   alt: "The Astro logo on a dark background with a pink glow."
-tags: ["Node.js"]
+tags: "Node.js"
 ---
 
 Hello Guys 👋🏽, in this article I will teach you the basic of the FS module API of Node.js, you will be learning how to create, read, write and update a file. Dealing with files will be a crucial piece of knowledge, because everything in a computer is a file. By learning how to deal a file it will open your mind to write more useful programs or scripts to solve real life problems.
