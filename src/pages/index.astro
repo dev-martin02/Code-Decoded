@@ -1,12 +1,7 @@
 ---
+import { Blogs } from "../components/Blogs";
 import Filter from "../components/Filter";
 import Navigation from "../components/Navigation.astro";
-
-
-export const allPosts = await Astro.glob('../pages/posts/*.md');
-const sortedPosts = allPosts.sort((a, b) => 
-  new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime()
-);
 ---
 <html lang="en" class="h-full">
     <head>
@@ -55,36 +50,7 @@ const sortedPosts = allPosts.sort((a, b) =>
                     </div>
 
                     <ul class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {sortedPosts.map((post) => (
-                            <li class="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition duration-300">
-                                <a 
-                                    href={post.url} 
-                                    class="block hover:bg-gray-50 h-full"
-                                >
-                                    {post.frontmatter.image && (
-                                        <div class="h-48 w-full overflow-hidden">
-                                            <img 
-                                                src={post.frontmatter.image.url} 
-                                                alt={post.frontmatter.image.alt} 
-                                                class="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                    )}
-                                    <div class="p-6">
-                                        <h4 class="text-xl font-bold text-gray-900 mb-2">
-                                            {post.frontmatter.title}
-                                        </h4>
-                                        <p class="text-gray-600 mb-4">
-                                            {post.frontmatter.description}
-                                        </p>
-                                        <div class="flex justify-between items-center text-sm text-gray-500">
-                                            <span>{post.frontmatter.author}</span>
-                                            <span>{new Date(post.frontmatter.date).toLocaleDateString()}</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        ))}
+                      <Blogs client:load/>
                     </ul>
                 </section>
             </main>
@@ -93,14 +59,15 @@ const sortedPosts = allPosts.sort((a, b) =>
                 © 2024 Martin Note. All rights reserved.
             </footer>
         </div>
-
+        
         <script>
-            const filterToggle = document.getElementById('filterToggle');
-            const filterContainer = document.getElementById('filterContainer');
+                const filterToggle = document.getElementById('filterToggle');
+                const filterContainer = document.getElementById('filterContainer');
 
-            filterToggle!.addEventListener('click', () => {
-                filterContainer!.classList.toggle('hidden');
-            });
+                filterToggle!.addEventListener('click', () => {
+                    filterContainer!.classList.toggle('hidden');
+                });
+
         </script>
     </body>
 </html>
