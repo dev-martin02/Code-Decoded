@@ -78,8 +78,6 @@ export function Blogs() {
       </li>
     ));
 
-  console.log("filterd", filteredPost);
-
   return (
     <>{filteredPost.length > 0 ? blogStyle(filteredPost) : blogStyle(posts)}</>
   );

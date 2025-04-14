@@ -4,69 +4,79 @@ import type { BlogPost } from "../store/store";
 import { useStore } from "@nanostores/react";
 
 export default function Filter() {
-  // State to store the dynamically generated tags
+  // State for tags and selected tags
   const [tags, setTags] = useState<Record<string, number>>({});
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const blogs = useStore(blogsStore);
 
+  // Generate tags from blog posts
   useEffect(() => {
-    const tagObj: Record<string, number> = {};
+    const tagCounts: Record<string, number> = {};
 
-    for (const post of blogs) {
+    blogs.forEach((post) => {
       const tag = post.tags.toLowerCase();
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    });
 
-      if (!tagObj[tag]) {
-        tagObj[tag] = 1;
-      }
-    }
-
-    setTags(tagObj);
+    setTags(tagCounts);
   }, [blogs]);
 
-  let checkedTags: string[] = [];
-
-  // Handle the "Apply" button logic
-  const handleApply = (): void => {
-    const checkedCheckboxes = Array.from(
-      document.querySelectorAll<HTMLInputElement>(
-        'input[type="checkbox"]:checked'
-      )
+  // Handle checkbox changes
+  const handleCheckboxChange = (tag: string, isChecked: boolean) => {
+    setSelectedTags((prev) =>
+      isChecked ? [...prev, tag] : prev.filter((t) => t !== tag)
     );
+  };
 
-    checkedTags = checkedCheckboxes.map((checkbox) => checkbox.name);
-    const articles: BlogPost[] = [];
-
-    for (const tag of checkedTags) {
-      console.log(tag);
-      blogsStore.value.forEach((data) => {
-        console.log(data.tags);
-        if (data.tags.toLocaleLowerCase() === tag) {
-          articles.push(data);
-        }
-      });
+  // Apply filters
+  const handleApply = () => {
+    if (selectedTags.length === 0) {
+      // If no tags selected, show all posts
+      filteredPosts.set(blogs);
+      return;
     }
 
-    console.log(articles);
-    filteredPosts.set(articles);
-    console.log(filteredPosts.value);
-    console.log(tags);
+    const filtered = blogs.filter((post) =>
+      selectedTags.includes(post.tags.toLowerCase())
+    );
+
+    filteredPosts.set(filtered);
   };
 
   return (
-    <fieldset>
-      <legend>Which topic would you like to read about?</legend>
+    <fieldset className="filter-container p-4 border rounded-lg">
+      <legend className="text-lg font-medium mb-3">
+        Which topic would you like to read about?
+      </legend>
 
-      {Object.keys(tags).map((key) => (
-        <div key={key}>
-          <input type="checkbox" id={key} name={key} />
-          <label htmlFor={key}>{key}</label>
-        </div>
-      ))}
+      <div className="tag-options grid grid-cols-2 gap-2 md:grid-cols-3">
+        {Object.entries(tags).map(([tag, count]) => (
+          <div key={tag} className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              id={`tag-${tag}`}
+              name={tag}
+              checked={selectedTags.includes(tag)}
+              onChange={(e) => handleCheckboxChange(tag, e.target.checked)}
+              className="h-4 w-4"
+            />
+            <label htmlFor={`tag-${tag}`} className="text-sm capitalize">
+              {tag} <span className="text-gray-500 text-xs">({count})</span>
+            </label>
+          </div>
+        ))}
+      </div>
+
+      {Object.keys(tags).length === 0 && (
+        <p className="text-gray-500 text-sm my-2">No tags available</p>
+      )}
 
       <button
-        className="border-2 rounded-md px-3 py-1 mt-3"
+        className="border-2 rounded-md px-4 py-2 mt-4 bg-blue-600 text-white hover:bg-blue-700 transition-colors"
         onClick={handleApply}
+        disabled={Object.keys(tags).length === 0}
       >
-        Apply
+        Apply Filters
       </button>
     </fieldset>
   );

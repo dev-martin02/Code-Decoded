@@ -12,15 +12,15 @@ const { frontmatter } = Astro.props;
     <meta charset="utf-8">
     <title>{frontmatter.title}</title>
   </head>
-  <body class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <body class="max-w-6xl mx-auto px-2 w-full sm:px-6 lg:px-8">
       <Navigation/>
 
-    <div class="bg-white shadow-md rounded-lg overflow-hidden p-6 space-y-4">
+    <div class="bg-white shadow-md rounded-lg overflow-hidden md:p-6 space-y-4">
       <header class="border-b pb-4 mb-6">
         <Image src={frontmatter.image.url} alt={frontmatter.image.alt}  width={1000} 
-        height={800} class="rounded mb-10 w-full" />
+        height={800} class="rounded mb-10 w-full " />
 
-        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight">
+        <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight px-3 md:px-0">
           {frontmatter.title} 
           <span class="text-lg text-gray-600 font-normal block mt-2">
             by {frontmatter.author}
@@ -28,7 +28,7 @@ const { frontmatter } = Astro.props;
         </h1>
       </header>
 
-      <article class="prose-xl prose-headings:text-gray-900 prose-a:text-blue-600 prose-a:underline">
+      <article class="px-4  prose-lg prose-headings:text-gray-900 prose-a:text-blue-600 prose-a:underline">
         <slot /> <!-- Child elements goes here -->
       </article>
 
